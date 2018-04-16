@@ -11,12 +11,11 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN mkdir /mcrypt
-COPY --from=apriorit/docker-centos7-python35-mcrypt:latest /mcrypt /mcrypt
+COPY mcrypt /mcrypt
 WORKDIR /mcrypt
 RUN python3.5 setup.py install
 
-COPY --from=apriorit/docker-centos7-python35-mcrypt:latest \
+COPY --from=apriorit/docker-centos7-x64-python35-gcc:latest \
 ["/lib64/libc++.so.1", "/lib64/libc++abi.so.1", "/lib64/libicudata.so.56", "/lib64/libicui18n.so.56", \
 "/lib64/libicuuc.so.56", "/lib64/libQt5Core.la", "/lib64/libQt5Core.so.5", "/lib64/"]
 
